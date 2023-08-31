@@ -12,7 +12,7 @@ const helmet = require("helmet");
 
 require("dotenv").config();
 
-const port = process.env.PORT || 5000;
+const port = process.env.HOST_PORT;
 app.use(helmet());
 
 connectDB();
