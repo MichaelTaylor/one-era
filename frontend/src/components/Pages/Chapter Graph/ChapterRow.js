@@ -9,7 +9,7 @@ const ChapterRow = (props) => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.BACKEND_HOST}/weeks/${props.year}`)
+      .get(`${process.env.REACT_APP_BACKEND_HOST}/weeks/${props.year}`)
       .then((response) => {
         setRow(response.data);
       });

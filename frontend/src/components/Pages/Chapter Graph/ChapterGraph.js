@@ -25,7 +25,7 @@ const ChapterGraph = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.BACKEND_HOST}/chapters/first/last/`)
+      .get(`${process.env.REACT_APP_BACKEND_HOST}/chapters/first/last/`)
       .then((response) => {
         dispatch(setEarliestElement(response.data[0]));
         dispatch(setLatestElement(response.data[1]));
@@ -47,7 +47,7 @@ const ChapterGraph = () => {
     e.preventDefault();
     axios
       .get(
-        `${process.env.BACKEND_HOST}/chapters/multiple/${firstChapter}/${lastChapter}`
+        `${process.env.REACT_APP_BACKEND_HOST}/chapters/multiple/${firstChapter}/${lastChapter}`
       )
       .then((response) => {
         dispatch(setEarliestElement(response.data[0]));

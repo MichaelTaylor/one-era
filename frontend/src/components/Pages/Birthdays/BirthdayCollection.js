@@ -18,8 +18,9 @@ const BirthdayCollection = () => {
     const day = date.getDate();
 
     setDate(`${monthString} ${day}`);
+    console.log(`${process.env.REACT_APP_BACKEND_HOST}`);
     axios
-      .get(`${process.env.BACKEND_HOST}/birthdays/${month}/${day}`)
+      .get(`${process.env.REACT_APP_BACKEND_HOST}/birthdays/${month}/${day}`)
       .then((response) => {
         setBirthdays(response.data[0].characters);
       });

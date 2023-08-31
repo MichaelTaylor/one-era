@@ -7,7 +7,7 @@ const ChapterImage = (props) => {
 
   const image = props.authorComments
     ? odaAvatar
-    : `${process.env.BACKEND_HOST}${props.media.cover}`;
+    : `${process.env.REACT_APP_BACKEND_HOST}${props.media.cover}`;
 
   return (
     <React.Fragment>
