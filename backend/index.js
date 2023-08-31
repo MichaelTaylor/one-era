@@ -11,8 +11,8 @@ const cors = require("cors");
 const helmet = require("helmet");
 
 require("dotenv").config();
-const host = process.env.HOST_URL;
 
+const port = process.env.PORT || 5000;
 app.use(helmet());
 
 connectDB();
@@ -29,5 +29,5 @@ app.use(birthdayRoutes);
 app.use(weekRoutes);
 
 app.listen(port, () => {
-  console.log(`Example app listening at ${host}`);
+  console.log(`Example app listening at ${port}`);
 });
