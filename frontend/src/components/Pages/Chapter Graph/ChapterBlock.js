@@ -51,6 +51,8 @@ const ChapterBlock = (props) => {
     }
   };
 
+  console.log(`"rendered" ${compiledData.mediaID.chapterNum}`);
+
   return (
     <div
       id={compiledData.mediaID.chapterNum}

@@ -14,7 +14,7 @@ const BirthdayRow = (props) => {
       <BirthdayCharacter
         key={index}
         characterName={birthday.name}
-        image={birthday.image}
+        image={`${process.env.REACT_APP_BACKEND_HOST}${birthday.image}`}
         wikiLink={birthday.wiki}
       />
     ));

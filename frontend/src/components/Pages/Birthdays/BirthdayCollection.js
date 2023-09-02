@@ -11,6 +11,14 @@ const BirthdayCollection = () => {
 
   const boldStyle = "font-bold text-center";
 
+  const getBirthdays = async (month, day) => {
+    await axios
+      .get(`${process.env.REACT_APP_BACKEND_HOST}/birthdays/${month}/${day}`)
+      .then((response) => {
+        setBirthdays(response.data[0].characters);
+      });
+  };
+
   useEffect(() => {
     const date = new Date();
     const monthString = date.toLocaleString("default", { month: "long" });
@@ -18,12 +26,7 @@ const BirthdayCollection = () => {
     const day = date.getDate();
 
     setDate(`${monthString} ${day}`);
-    console.log(`${process.env.REACT_APP_BACKEND_HOST}`);
-    axios
-      .get(`${process.env.REACT_APP_BACKEND_HOST}/birthdays/${month}/${day}`)
-      .then((response) => {
-        setBirthdays(response.data[0].characters);
-      });
+    getBirthdays(month, day);
   }, []);
 
   return (

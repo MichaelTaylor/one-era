@@ -10,7 +10,7 @@ const BirthdayCharacter = (props) => {
       <img
         className="w-auto h-auto border-black border-4"
         crossOrigin="anonymous"
-        src={`${process.env.REACT_APP_BACKEND_HOST}${props.image}`}
+        src={props.image}
         alt={`${props.characterName} birthday`}
         onClick={wikiRedirect}
       />
