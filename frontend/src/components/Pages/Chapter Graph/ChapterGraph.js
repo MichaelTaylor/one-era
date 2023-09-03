@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import Card from "../../Shared/UI Elements/Card";
 import ChapterRow from "./ChapterRow";
 import ArcGrid from "./ArcGrid";
@@ -55,11 +55,36 @@ const ChapterGraph = () => {
       });
   };
 
-  const fetchChapter = () => {
-    setIsFirst(!isFirst);
+  const setChapterHandler = (message) => {
+    setChapter(message);
   };
 
+  const selectBlockHandler = useCallback((blockExpression) => {
+    setSelectedBlocks(blockExpression);
+  }, []);
+
+  const fetchChapter = useCallback(() => {
+    setIsFirst(!isFirst);
+  }, [isFirst]);
+
   const inputStyle = "text-center w-96 mt-6 mx-5 border-2 border-black rounded";
+
+  const rows = useMemo(() => {
+    return yearsData
+      ?.toReversed()
+      .map((item, index) => (
+        <ChapterRow
+          key={item}
+          year={item}
+          visibleState={(e) => setChapterHandler(e)}
+          isFirst={isFirst}
+          fetchChapter={fetchChapter}
+          selectedBlocks={selectedBlocks}
+          setBlocks={selectBlockHandler}
+          flexStyle={index === yearsData.length - 1 ? "[flex:1]" : ""}
+        />
+      ));
+  }, [isFirst, fetchChapter, selectBlockHandler, selectedBlocks]);
 
   return (
     <Card className="flex flex-col items-center">
@@ -87,20 +112,7 @@ const ChapterGraph = () => {
         </button>
       </form>
       <h1 className="my-10">{chapter}</h1>
-      <div className="flex flex-col my-2">
-        {yearsData?.toReversed().map((item, index) => (
-          <ChapterRow
-            key={item}
-            year={item}
-            visibleState={setChapter}
-            isFirst={isFirst}
-            fetchChapter={() => fetchChapter(!isFirst)}
-            selectedBlocks={selectedBlocks}
-            setBlocks={setSelectedBlocks}
-            flexStyle={index === yearsData.length - 1 ? "[flex:1]" : ""}
-          />
-        ))}
-      </div>
+      <div className="flex flex-col my-2">{rows}</div>
       <ArcGrid />
     </Card>
   );
