@@ -1,6 +1,8 @@
 import React from "react";
 
 const BirthdayCharacter = (props) => {
+  if (props.image.includes("undefined")) return;
+
   const wikiRedirect = () => {
     window.open(`${props.wikiLink}`, "_blank");
   };
