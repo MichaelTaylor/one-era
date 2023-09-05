@@ -7,10 +7,9 @@ const getWeeks = async (req, res) => {
 
 const weeksByYear = async (req, res) => {
   const year = req.params.year;
-  const weeks = await week.find(
-    { date: { $regex: year } },
-    { _id: 0, "mangaInfo._id": 0 }
-  );
+  const weeks = await week
+    .find({ date: { $regex: year } }, { _id: 0, "mangaInfo._id": 0 })
+    .sort({ index: 1 });
   res.json(weeks);
 };
 

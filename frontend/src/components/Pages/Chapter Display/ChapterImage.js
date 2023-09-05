@@ -13,7 +13,7 @@ const ChapterImage = (props) => {
     <React.Fragment>
       <img
         crossOrigin="anonymous"
-        className={`mx-auto my-8 [max-height:30rem]  border-black border-4 transition hover:scale-105 cursor-pointer sm:w-64 xl:w-80 2xl:w-96`}
+        className={`mx-5 my-8 [max-height:30rem]  border-black border-4 transition hover:scale-105 cursor-pointer sm:w-64 sm:mx-auto xl:w-80 2xl:w-96`}
         onClick={props.GoToWiki}
         src={image}
         ref={imageRef}

@@ -11,6 +11,7 @@ import {
   setLatestElement,
 } from "../../../app/features/elementsSlice";
 import { useDispatch } from "react-redux";
+import ChapterInputs from "./ChapterInputs";
 
 const ChapterGraph = () => {
   const [chapter, setChapter] = useState("Select a Chapter");
@@ -67,8 +68,6 @@ const ChapterGraph = () => {
     setIsFirst(!isFirst);
   }, [isFirst]);
 
-  const inputStyle = "text-center w-96 mt-6 mx-5 border-2 border-black rounded";
-
   const rows = useMemo(() => {
     return yearsData
       ?.toReversed()
@@ -88,29 +87,14 @@ const ChapterGraph = () => {
 
   return (
     <Card className="flex flex-col items-center">
-      <form onSubmit={setTwoChapters}>
-        <input
-          type="number"
-          placeholder="Chapter 1"
-          value={firstChapter}
-          onChange={setFirstChapterHandler}
-          min={1}
-          max={lastChapter}
-          className={inputStyle}
-        />
-        <input
-          type="number"
-          placeholder={`Chapter ${latestChapter}`}
-          value={lastChapter}
-          onChange={setLastChapterHandler}
-          min={firstChapter}
-          max={latestChapter}
-          className={inputStyle}
-        />
-        <button className="bg-primary text-white rounded-lg py-2 px-3">
-          submit
-        </button>
-      </form>
+      <ChapterInputs
+        setTwoChapters={setTwoChapters}
+        firstChapter={firstChapter}
+        setFirstChapterHandler={setFirstChapterHandler}
+        lastChapter={lastChapter}
+        setLastChapterHandler={setLastChapterHandler}
+        latestChapter={latestChapter}
+      />
       <h1 className="my-10">{chapter}</h1>
       <div className="flex flex-col my-2">{rows}</div>
       <ArcGrid />

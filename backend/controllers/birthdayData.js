@@ -8,27 +8,27 @@ const convertMonth = (index) => {
 };
 
 const getBirthdays = async (req, res) => {
-  const birthdays = await birthday.find({}, { _id: 0, "characters._id": 0 });
+  const birthdays = await birthday
+    .find({}, { _id: 0, "characters._id": 0 })
+    .sort({ index: 1 });
 
   res.json(birthdays);
 };
 
 const getBirthdayMonth = async (req, res) => {
   const month = convertMonth(req.params.month);
-  const birthdays = await birthday.find(
-    { date: { $regex: month } },
-    { _id: 0, "characters._id": 0 }
-  );
+  const birthdays = await birthday
+    .find({ date: { $regex: month } }, { _id: 0, "characters._id": 0 })
+    .sort({ index: 1 });
   res.json(birthdays);
 };
 
 const getBirthdaySpecific = async (req, res) => {
   const month = `${convertMonth(req.params.month)} ${req.params.day}`;
 
-  const day = await birthday.find(
-    { date: month },
-    { _id: 0, "characters._id": 0 }
-  );
+  const day = await birthday
+    .find({ date: month }, { _id: 0, "characters._id": 0 })
+    .sort({ index: 1 });
   res.json(day);
 };
 
