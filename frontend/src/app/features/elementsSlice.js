@@ -15,8 +15,10 @@ export const elementsSlice = createSlice({
     setLatestElement: (state, action) => {
       state.latestElement = action.payload;
     },
+    clearElements: () => initialState,
   },
 });
 
-export const { setEarliestElement, setLatestElement } = elementsSlice.actions;
+export const { setEarliestElement, setLatestElement, clearElements } =
+  elementsSlice.actions;
 export default elementsSlice.reducer;

@@ -9,6 +9,7 @@ import axios from "axios";
 import {
   setEarliestElement,
   setLatestElement,
+  clearElements,
 } from "../../../app/features/elementsSlice";
 import { useDispatch } from "react-redux";
 import ChapterInputs from "./ChapterInputs";
@@ -46,6 +47,7 @@ const ChapterGraph = () => {
 
   const setTwoChapters = (e) => {
     e.preventDefault();
+    dispatch(clearElements());
     axios
       .get(
         `${process.env.REACT_APP_BACKEND_HOST}/chapters/multiple/${firstChapter}/${lastChapter}`

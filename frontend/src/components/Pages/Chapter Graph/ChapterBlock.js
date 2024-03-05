@@ -43,7 +43,7 @@ const ChapterBlock = (props) => {
     if (props.isFirst) {
       block.triggerArrays(props.selectedBlocks);
 
-      if (before) return;
+      if (before && latestElement === "") return;
       block.setElement(setEarliestElement(chapterData));
     } else {
       if (after) return;
