@@ -23,6 +23,7 @@ const App = () => {
       <ChapterComparison />
       <ChapterGraph />
       <References />
+      {console.log(`${process.env.REACT_APP_BACKEND_HOST}`)}
     </React.Fragment>
   );
 };

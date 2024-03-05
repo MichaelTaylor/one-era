@@ -10,10 +10,10 @@ const ChapterImage = (props) => {
     : `${process.env.REACT_APP_BACKEND_HOST}${props.media.cover}`;
 
   return (
-    <React.Fragment>
+    <div className="flex items-center h-80">
       <img
         crossOrigin="anonymous"
-        className={`mx-5 my-8 [max-height:30rem]  border-black border-4 transition hover:scale-105 cursor-pointer sm:w-64 sm:mx-auto xl:w-80 2xl:w-96`}
+        className={`transition hover:scale-105 cursor-pointer mx-auto h-auto max-h-80 object-contain shadow-custom-shadow`}
         onClick={props.GoToWiki}
         src={image}
         ref={imageRef}
@@ -22,7 +22,7 @@ const ChapterImage = (props) => {
       {props.authorComments && (
         <p className="m-5">"{props.media.authorComments}"</p>
       )}
-    </React.Fragment>
+    </div>
   );
 };
 

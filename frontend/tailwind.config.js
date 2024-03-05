@@ -4,6 +4,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   darkMode: "class",
   theme: {
+    boxShadow: {
+      "custom-shadow": "0 0 8px 8px rgba(0, 0, 0, 0.55)",
+    },
     colors: {
       // Using modern `rgb`
       primary: "#ff0000",
