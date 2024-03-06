@@ -51,12 +51,17 @@ const ChapterBlock = (props) => {
     }
   };
 
+  const fetchedImage = `${process.env.REACT_APP_BACKEND_HOST}${compiledData.mediaID.cover}`;
+
   return (
     <div
       id={compiledData.mediaID.chapterNum}
       className={`${color} ${compiledData.sizes} ${compiledData.style} ${block.hasBorder} focus:[transform:scale(1.5)] focus:[border-width:5px]`}
       onClick={() => selectionHandler()}
-      onMouseEnter={() => props.visibleState(compiledData.message)}
+      onMouseEnter={() => {
+        props.visibleState(compiledData.message);
+        props.setPreviwImage(fetchedImage);
+      }}
       onMouseLeave={() => props.visibleState("Select a Chapter")}
     />
   );

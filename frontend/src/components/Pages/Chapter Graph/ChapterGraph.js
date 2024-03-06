@@ -18,6 +18,7 @@ const ChapterGraph = () => {
   const [chapter, setChapter] = useState("Select a Chapter");
   const [isFirst, setIsFirst] = useState(true);
   const [selectedBlocks, setSelectedBlocks] = useState([]);
+  const [imagePreview, setImagePreview] = useState("");
 
   const [firstChapter, setFirstChapter] = useState("");
   const [lastChapter, setLastChapter] = useState("");
@@ -82,6 +83,7 @@ const ChapterGraph = () => {
           fetchChapter={fetchChapter}
           selectedBlocks={selectedBlocks}
           setBlocks={selectBlockHandler}
+          setPreviewImage={setImagePreview}
           flexStyle={index === yearsData.length - 1 ? "[flex:1]" : ""}
         />
       ));
@@ -89,14 +91,22 @@ const ChapterGraph = () => {
 
   return (
     <Card className="flex flex-col items-center">
-      <ChapterInputs
-        setTwoChapters={setTwoChapters}
-        firstChapter={firstChapter}
-        setFirstChapterHandler={setFirstChapterHandler}
-        lastChapter={lastChapter}
-        setLastChapterHandler={setLastChapterHandler}
-        latestChapter={latestChapter}
-      />
+      <div className="flex flex-row justify-center items-center">
+        <ChapterInputs
+          setTwoChapters={setTwoChapters}
+          firstChapter={firstChapter}
+          setFirstChapterHandler={setFirstChapterHandler}
+          lastChapter={lastChapter}
+          setLastChapterHandler={setLastChapterHandler}
+          latestChapter={latestChapter}
+        />
+        <img
+          crossOrigin="anonymous"
+          className={`transition hover:scale-105 cursor-pointer mx-auto h-auto max-h-80 object-contain shadow-custom-shadow`}
+          src={imagePreview}
+          alt="Preview Panel"
+        />
+      </div>
       <h1 className="my-10">{chapter}</h1>
       <div className="flex flex-col my-2">{rows}</div>
       <ArcGrid />
