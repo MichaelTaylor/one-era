@@ -37,7 +37,7 @@ const ChapterGraph = () => {
         setLatestChapter(response.data[1].chapterNum);
         setImagePreview(nullImage);
       });
-  }, [dispatch]);
+  }, [dispatch, nullImage]);
 
   //TODO massivly clean up this code
   const setFirstChapterHandler = (e) => {
@@ -138,7 +138,7 @@ const ChapterGraph = () => {
 
   return (
     <Card className="flex flex-col items-center">
-      <div className="flex flex-row justify-center items-center">
+      <div className="flex lg:flex-row lg:gap-44 gap-10 justify-center mt-10 items-center flex-col">
         <ChapterInputs
           setTwoChapters={setTwoChapters}
           firstChapter={firstChapter}
@@ -147,12 +147,14 @@ const ChapterGraph = () => {
           setLastChapterHandler={setLastChapterHandler}
           latestChapter={latestChapter}
         />
-        <img
-          crossOrigin="anonymous"
-          className={`transition hover:scale-105 cursor-pointer mx-auto h-auto max-h-80 object-contain shadow-custom-shadow`}
-          src={imagePreview}
-          alt="Preview Panel"
-        />
+        <div className="w-64 h-64 flex justify-center items-center">
+          <img
+            crossOrigin="anonymous"
+            className={`object-contain max-w-full max-h-full shadow-custom-shadow`}
+            src={imagePreview}
+            alt="Preview Panel"
+          />
+        </div>
       </div>
       <h1 className="my-10">{chapter}</h1>
       <div className="flex flex-col my-2">{rows}</div>
