@@ -4,7 +4,7 @@ const dateMessage = (number, message) => {
   if (number === 0) return "";
 
   const plural = number > 1 ? "s" : "";
-  return `${number} ${message}${plural} `;
+  return `${number} ${message}${plural},`;
 };
 
 const useDateDifference = (startDate, endDate) => {
@@ -42,7 +42,9 @@ const useDateDifference = (startDate, endDate) => {
 
   const message =
     dateMessage(yearsPassed, "year") +
+    "\n" +
     dateMessage(monthsPassed, "month") +
+    "\n" +
     dateMessage(-daysPassed, "day");
 
   const dateDifference = message;
