@@ -27,7 +27,7 @@ const ChapterRow = (props) => {
             fetchChapter={props.fetchChapter}
             selectedBlocks={props.selectedBlocks}
             setBlocks={props.setBlocks}
-            setPreviwImage={props.setPreviewImage}
+            setPreviewImage={props.setPreviewImage}
             visibleState={props.visibleState}
           />
         ))}

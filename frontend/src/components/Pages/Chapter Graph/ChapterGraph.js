@@ -14,6 +14,8 @@ import {
 import { useDispatch } from "react-redux";
 import ChapterInputs from "./ChapterInputs";
 
+import randomImageData from "../../Shared/Data/RandomImageData";
+
 const ChapterGraph = () => {
   const [chapter, setChapter] = useState("Select a Chapter");
   const [isFirst, setIsFirst] = useState(true);
@@ -23,7 +25,7 @@ const ChapterGraph = () => {
   const [firstChapter, setFirstChapter] = useState("");
   const [lastChapter, setLastChapter] = useState("");
   const [latestChapter, setLatestChapter] = useState(0);
-
+  const nullImage = randomImageData.null;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,6 +35,7 @@ const ChapterGraph = () => {
         dispatch(setEarliestElement(response.data[0]));
         dispatch(setLatestElement(response.data[1]));
         setLatestChapter(response.data[1].chapterNum);
+        setImagePreview(nullImage);
       });
   }, [dispatch]);
 
@@ -40,35 +43,44 @@ const ChapterGraph = () => {
   const setFirstChapterHandler = (e) => {
     e.preventDefault();
     setFirstChapter(e.target.value);
-    axios
-      .get(
-        `${process.env.REACT_APP_BACKEND_HOST}/chapters/singular/${e.target.value}`
-      )
-      .then((response) => {
-        if (response.data) {
-          const image = response.data.cover
-            ? `${process.env.REACT_APP_BACKEND_HOST}${response.data.cover}`
-            : "https://external-preview.redd.it/WWKDbX5arO0tz27B8h_WodfQL_AbP2sZiZjzthKensI.jpg?width=640&crop=smart&auto=webp&s=9ef0b29b455d84c6aa7403596dc4c080129d867f";
-          setImagePreview(image);
-        }
-      });
+
+    if (e.target.value) {
+      axios
+        .get(
+          `${process.env.REACT_APP_BACKEND_HOST}/chapters/singular/${e.target.value}`
+        )
+        .then((response) => {
+          if (response.data) {
+            const image = response.data.cover
+              ? `${process.env.REACT_APP_BACKEND_HOST}${response.data.cover}`
+              : nullImage;
+            setImagePreview(image);
+          }
+        });
+    } else {
+      setImagePreview(nullImage);
+    }
   };
 
   const setLastChapterHandler = (e) => {
     e.preventDefault();
     setLastChapter(e.target.value);
-    axios
-      .get(
-        `${process.env.REACT_APP_BACKEND_HOST}/chapters/singular/${e.target.value}`
-      )
-      .then((response) => {
-        if (response.data) {
-          const image = response.data.cover
-            ? `${process.env.REACT_APP_BACKEND_HOST}${response.data.cover}`
-            : "https://external-preview.redd.it/WWKDbX5arO0tz27B8h_WodfQL_AbP2sZiZjzthKensI.jpg?width=640&crop=smart&auto=webp&s=9ef0b29b455d84c6aa7403596dc4c080129d867f";
-          setImagePreview(image);
-        }
-      });
+    if (e.target.value) {
+      axios
+        .get(
+          `${process.env.REACT_APP_BACKEND_HOST}/chapters/singular/${e.target.value}`
+        )
+        .then((response) => {
+          if (response.data) {
+            const image = response.data.cover
+              ? `${process.env.REACT_APP_BACKEND_HOST}${response.data.cover}`
+              : nullImage;
+            setImagePreview(image);
+          }
+        });
+    } else {
+      setImagePreview(nullImage);
+    }
   };
 
   const setTwoChapters = (e) => {
@@ -96,6 +108,10 @@ const ChapterGraph = () => {
     setIsFirst(!isFirst);
   }, [isFirst]);
 
+  const imagePreviewHandler = useCallback((image) => {
+    setImagePreview(image);
+  }, []);
+
   const rows = useMemo(() => {
     return yearsData
       ?.toReversed()
@@ -108,11 +124,17 @@ const ChapterGraph = () => {
           fetchChapter={fetchChapter}
           selectedBlocks={selectedBlocks}
           setBlocks={selectBlockHandler}
-          setPreviewImage={setImagePreview}
+          setPreviewImage={imagePreviewHandler}
           flexStyle={index === yearsData.length - 1 ? "[flex:1]" : ""}
         />
       ));
-  }, [isFirst, fetchChapter, selectBlockHandler, selectedBlocks]);
+  }, [
+    isFirst,
+    fetchChapter,
+    selectBlockHandler,
+    imagePreviewHandler,
+    selectedBlocks,
+  ]);
 
   return (
     <Card className="flex flex-col items-center">

@@ -8,7 +8,7 @@ import {
 import useElement from "../../Shared/hooks/useElement";
 import useBlock from "../../Shared/hooks/useBlock";
 import useBlockData from "../../Shared/hooks/useBlockData";
-
+import randomImageData from "../../Shared/Data/RandomImageData";
 const ChapterBlock = (props) => {
   const reduxElements = useElement();
 
@@ -50,11 +50,11 @@ const ChapterBlock = (props) => {
       block.setElement(setLatestElement(chapterData));
     }
   };
-
-  const fetchedImage = compiledData.mediaID.cover
-    ? `${process.env.REACT_APP_BACKEND_HOST}${compiledData.mediaID.cover}`
-    : "https://external-preview.redd.it/WWKDbX5arO0tz27B8h_WodfQL_AbP2sZiZjzthKensI.jpg?width=640&crop=smart&auto=webp&s=9ef0b29b455d84c6aa7403596dc4c080129d867f";
-
+  const nullImage = randomImageData.null;
+  const fetchedImage =
+    compiledData.mediaID.cover !== undefined
+      ? `${process.env.REACT_APP_BACKEND_HOST}${compiledData.mediaID.cover}`
+      : nullImage;
   return (
     <div
       id={compiledData.mediaID.chapterNum}
@@ -62,9 +62,12 @@ const ChapterBlock = (props) => {
       onClick={() => selectionHandler()}
       onMouseEnter={() => {
         props.visibleState(compiledData.message);
-        props.setPreviwImage(fetchedImage);
+        props.setPreviewImage(fetchedImage);
       }}
-      onMouseLeave={() => props.visibleState("Select a Chapter")}
+      onMouseLeave={() => {
+        props.visibleState("Select a Chapter");
+        props.setPreviewImage(nullImage);
+      }}
     />
   );
 };
