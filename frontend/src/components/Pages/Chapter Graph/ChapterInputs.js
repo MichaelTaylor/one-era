@@ -27,7 +27,10 @@ const ChapterInputs = (props) => {
         max={props.latestChapter}
         className={inputStyle}
       />
-      <button className="bg-primary text-white font-bold rounded-lg my-5 py-2 px-3 w-32">
+      <button
+        className="bg-primary text-white font-bold rounded-lg my-5 py-2 px-3 w-32 disabled:opacity-50 transition duration-300 hover:opacity-60"
+        disabled={!props.firstChapter || !props.lastChapter}
+      >
         Get Chapters
       </button>
     </form>
