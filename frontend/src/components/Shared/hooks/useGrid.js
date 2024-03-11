@@ -8,7 +8,7 @@ import {
 } from "../../../app/features/elementsSlice";
 import randomImageData from "../Data/RandomImageData";
 
-const useChapter = () => {
+const useGrid = () => {
   const [firstChapter, setFirstChapter] = useState("");
   const [lastChapter, setLastChapter] = useState("");
   const [chapter, setChapter] = useState("");
@@ -95,4 +95,4 @@ const useChapter = () => {
   };
 };
 
-export default useChapter;
+export default useGrid;

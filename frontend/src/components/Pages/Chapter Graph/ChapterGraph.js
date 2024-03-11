@@ -14,7 +14,7 @@ import { useDispatch } from "react-redux";
 import randomImageData from "../../Shared/Data/RandomImageData";
 
 import useFetch from "../../Shared/hooks/useFetch";
-import useChapter from "../../Shared/hooks/useChapter";
+import useGrid from "../../Shared/hooks/useGrid";
 
 const ChapterGraph = () => {
   const [latestChapter, setLatestChapter] = useState(0);
@@ -39,7 +39,7 @@ const ChapterGraph = () => {
     selectBlockHandler,
     fetchChapter,
     imagePreviewHandler,
-  } = useChapter();
+  } = useGrid();
 
   useEffect(() => {
     if (loading) {

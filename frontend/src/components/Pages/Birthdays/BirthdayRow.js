@@ -7,7 +7,7 @@ const BirthdayRow = (props) => {
     "grid grid-cols-6 grid-rows-2 m-auto justify-center text-left";
 
   const birthdayStyle =
-    props.birthdays.length > 4 ? birthdayGridStyle : birthdayFlexStyle;
+    props.birthdays.length > 5 ? birthdayGridStyle : birthdayFlexStyle;
 
   const birthdays = useMemo(() => {
     return props.birthdays.map((birthday, index) => (
