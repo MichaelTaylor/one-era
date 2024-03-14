@@ -5,6 +5,7 @@ const { connectDB } = require("./connectDB");
 
 const chapterRoutes = require("./routes/chapterRoutes");
 const birthdayRoutes = require("./routes/birthdayRoutes");
+const volumeRoutes = require("./routes/volumeRoutes");
 const weekRoutes = require("./routes/weekRoutes");
 
 const cors = require("cors");
@@ -26,6 +27,7 @@ app.use("/static", express.static(__dirname + "/images"));
 
 app.use(chapterRoutes);
 app.use(birthdayRoutes);
+app.use(volumeRoutes);
 app.use(weekRoutes);
 
 app.listen(port, () => {
