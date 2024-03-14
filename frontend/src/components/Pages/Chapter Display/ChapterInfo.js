@@ -7,7 +7,7 @@ const ChapterInfo = (props) => {
     </div>
   );
 
-  const fullMediaMessage = (
+  const chapterInfo = (
     <div>
       <h1 className="font-bold text-xl">Chapter {props.media.chapterNum}</h1>
       <h1 className="md:font-base lg:font-normal italic">
@@ -20,7 +20,20 @@ const ChapterInfo = (props) => {
     </div>
   );
 
-  return props.media === "" ? emptyMediaMessage : fullMediaMessage;
+  const volumeInfo = (
+    <div>
+      <h1 className="font-bold text-xl">Volume 1</h1>
+      <h1 className="md:font-base lg:font-normal italic">Volume title</h1>
+
+      <h1>Chapters: chapters</h1>
+      <h1>Release: date</h1>
+    </div>
+  );
+
+  const fullMediaMessage = !props.volumeVisible ? chapterInfo : volumeInfo;
+  const message = props.media === "" ? emptyMediaMessage : fullMediaMessage;
+
+  return <div>{message}</div>;
 };
 
 export default ChapterInfo;

@@ -47,7 +47,7 @@ const ChapterGraph = () => {
     }
 
     if (error) {
-      console.log("Error");
+      console.log(error);
     }
 
     if (data) {
