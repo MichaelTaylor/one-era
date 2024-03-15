@@ -17,6 +17,42 @@ const getChapterRelations = async (chapterID) => {
   return { chapterData, volumeData };
 };
 
+const getTwoChapterRelations = async (earlyChapterID, lateChapterID) => {
+  const chapters = [];
+
+  const earlyChapterData = await chapter
+    .findOne({ chapterNum: earlyChapterID }, { _id: 0 })
+    .lean()
+    .exec();
+
+  const lateChapterData = await chapter
+    .findOne({ chapterNum: lateChapterID }, { _id: 0 })
+    .lean()
+    .exec();
+
+  const earlyVolumeData = await volume
+    .findOne({ volumeNum: earlyChapterData.volume })
+    .lean()
+    .exec();
+
+  const lateVolumeData = await volume
+    .findOne({ volumeNum: lateChapterData.volume })
+    .lean()
+    .exec();
+
+  chapters.push({
+    chapterData: earlyChapterData,
+    volumeData: earlyVolumeData,
+  });
+
+  chapters.push({
+    chapterData: lateChapterData,
+    volumeData: lateVolumeData,
+  });
+
+  return chapters;
+};
+
 const getChapterRelationsFirstLast = async () => {
   const firstChapterData = await chapter
     .findOne({ chapterNum: 1 }, { _id: 0 })
@@ -48,5 +84,6 @@ const getChapterRelationsFirstLast = async () => {
 
 module.exports = {
   getChapterRelations,
+  getTwoChapterRelations,
   getChapterRelationsFirstLast,
 };

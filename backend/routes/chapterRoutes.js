@@ -15,6 +15,10 @@ router.get("/chapters/first/last/", chapterData.getChaptersFirstLast);
 
 router.get("/chapter-relations/singular/:id", chapterData.getChapterRelations);
 router.get(
+  "/chapter-relations/multiple/:earlyChapter/:lateChapter",
+  chapterData.getTwoChapterRelations
+);
+router.get(
   "/chapter-relations/first/last/",
   chapterData.getChapterRelationsFirstLast
 );

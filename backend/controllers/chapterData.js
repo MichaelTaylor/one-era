@@ -1,3 +1,4 @@
+const { get } = require("mongoose");
 const chapter = require("../models/chapterSchema");
 const chapterService = require("../services/chapterService");
 
@@ -56,6 +57,16 @@ const getChapterRelations = async (req, res) => {
   res.json(chapterRelations);
 };
 
+const getTwoChapterRelations = async (req, res) => {
+  const earlyChapterID = req.params.earlyChapter;
+  const lateChapterID = req.params.lateChapter;
+  const chapterRelations = await chapterService.getTwoChapterRelations(
+    earlyChapterID,
+    lateChapterID
+  );
+  res.json(chapterRelations);
+};
+
 const getChapterRelationsFirstLast = async (req, res) => {
   const chapterRelations = await chapterService.getChapterRelationsFirstLast();
   res.json(chapterRelations);
@@ -67,5 +78,6 @@ module.exports = {
   getTwoChapters,
   getChaptersFirstLast,
   getChapterRelations,
+  getTwoChapterRelations,
   getChapterRelationsFirstLast,
 };
