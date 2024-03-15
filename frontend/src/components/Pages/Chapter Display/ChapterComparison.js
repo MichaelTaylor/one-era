@@ -14,7 +14,7 @@ const ChapterComparison = () => {
   const dispatch = useDispatch();
 
   const { data, loading, error } = useFetch(
-    `${process.env.REACT_APP_BACKEND_HOST}/chapter-relations/multiple/3/54`
+    `${process.env.REACT_APP_BACKEND_HOST}/chapter-relations/first/last`
   );
 
   useEffect(() => {

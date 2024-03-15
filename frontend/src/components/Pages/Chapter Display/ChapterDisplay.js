@@ -10,9 +10,12 @@ const ChapterDisplay = (props) => {
   //todo instead of state use a reducer (chapters, volumes, anime, etc)
   const [volumeVisible, setVolumeVisible] = useState(false);
 
+  const chapterData = props.media.chapterData;
+  const volumeData = props.media.volumeData;
+
   const link = !volumeVisible
-    ? `https://onepiece.fandom.com/wiki/Chapter_${props.media.chapterData.chapterNum}`
-    : `https://onepiece.fandom.com/wiki/Volume_${props.media.volumeData.volumeNum}`;
+    ? `https://onepiece.fandom.com/wiki/Chapter_${chapterData.chapterNum}`
+    : `https://onepiece.fandom.com/wiki/Volume_${volumeData.volumeNum}`;
 
   const GoToWiki = () => {
     window.open(link);
@@ -25,7 +28,7 @@ const ChapterDisplay = (props) => {
   const volumeButton = (
     <button
       className={buttonStyle}
-      disabled={props.media.volume === null}
+      disabled={volumeData === null}
       onClick={() => setVolumeVisible(!volumeVisible)}
     >
       {!volumeVisible ? "Volume" : "Chapter"}
@@ -35,7 +38,7 @@ const ChapterDisplay = (props) => {
   const authorChapterButton = (
     <button
       className={buttonStyle}
-      disabled={props.media === ""}
+      disabled={chapterData === ""}
       onClick={() => setAuthorComments(!authorComments)}
     >
       {!authorComments ? "Comments" : "Cover"}

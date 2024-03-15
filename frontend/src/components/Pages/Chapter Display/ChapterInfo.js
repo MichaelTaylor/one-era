@@ -24,19 +24,22 @@ const ChapterInfo = (props) => {
     </div>
   );
   //todo make resusuable
-  const volumeInfo = (
-    <div>
-      <h1 className="font-bold text-xl">
-        Volume {volumeMediaDetails.volumeNum}
-      </h1>
-      <h1 className="md:font-base lg:font-normal italic">
-        Volume {volumeMediaDetails.volumeTitle}
-      </h1>
+  const volumeInfo =
+    volumeMediaDetails !== null ? (
+      <div>
+        <h1 className="font-bold text-xl">
+          Volume {volumeMediaDetails.volumeNum}
+        </h1>
+        <h1 className="md:font-base lg:font-normal italic">
+          Volume {volumeMediaDetails.volumeTitle}
+        </h1>
 
-      <h1>Chapters: {volumeMediaDetails.volumeChapters}</h1>
-      <h1>Release: {volumeMediaDetails.volumeRelease}</h1>
-    </div>
-  );
+        <h1>Chapters: {volumeMediaDetails.volumeChapters}</h1>
+        <h1>Release: {volumeMediaDetails.volumeRelease}</h1>
+      </div>
+    ) : (
+      ""
+    );
 
   const fullMediaMessage = !props.volumeVisible ? chapterInfo : volumeInfo;
   const message = props.media === "" ? emptyMediaMessage : fullMediaMessage;

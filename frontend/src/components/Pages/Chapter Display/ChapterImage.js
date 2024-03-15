@@ -10,24 +10,34 @@ const ChapterImage = (props) => {
   //todo in mongo, if volumeData is empty, then it should be an empty string
   //todo make a reusable hook to get data
   const chapterCover = `${process.env.REACT_APP_BACKEND_HOST}${chapterData.cover}`;
-  const volumeCover = `${process.env.REACT_APP_BACKEND_HOST}${volumeData.imageDirectory}`;
-
+  const volumeCover =
+    volumeData !== null
+      ? `${process.env.REACT_APP_BACKEND_HOST}${volumeData.imageDirectory}`
+      : "";
+  const volumeAuthorCover =
+    volumeData !== null
+      ? `${process.env.REACT_APP_BACKEND_HOST}${volumeData.authorImage}`
+      : "";
   const coverImage = !props.volumeVisible ? chapterCover : volumeCover;
-  const image = props.authorComments ? odaAvatar : coverImage;
+  const authorCover = !props.volumeVisible ? odaAvatar : volumeAuthorCover;
+  const image = props.authorComments ? authorCover : coverImage;
+
+  const comments = !props.volumeVisible
+    ? chapterData.authorComments
+    : volumeData.authorNotes;
 
   return (
-    <div className="flex items-center h-80">
+    <div className="flex flex-col items-center h-80">
       <img
         crossOrigin="anonymous"
-        className={`transition hover:scale-105 cursor-pointer mx-auto h-auto max-h-80 object-contain shadow-custom-shadow`}
+        className={`transition hover:scale-105 cursor-pointer mx-auto 
+        max-h-80 object-contain shadow-custom-shadow`}
         onClick={props.GoToWiki}
         src={image}
         ref={imageRef}
         alt="Cover Art"
       />
-      {props.authorComments && (
-        <p className="m-5">"{props.media.authorComments}"</p>
-      )}
+      {props.authorComments && <p className="m-5">"{comments}"</p>}
     </div>
   );
 };
