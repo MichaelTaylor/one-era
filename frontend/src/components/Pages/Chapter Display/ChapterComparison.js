@@ -1,27 +1,61 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Card from "../../Shared/UI Elements/Card";
 import ChapterDisplay from "./ChapterDisplay";
 import useElement from "../../Shared/hooks/useElement";
 import useDateDifference from "../../Shared/hooks/useDateDifference";
+import useFetch from "../../Shared/hooks/useFetch";
+import {
+  setEarliestElement,
+  setLatestElement,
+} from "../../../app/features/elementsSlice";
+import { useDispatch } from "react-redux";
+import ChapterDateDifference from "./ChapterDateDifference";
+import useMediaElement from "../../Shared/hooks/useMediaElement";
 
 const ChapterComparison = () => {
   const reduxElements = useElement();
+  const dispatch = useDispatch();
 
-  const earliestElement = reduxElements.earliestElement;
-  const latestElement = reduxElements.latestElement;
+  const { data, loading, error } = useFetch(
+    `${process.env.REACT_APP_BACKEND_HOST}/chapter-relations/multiple/3/54`
+  );
 
-  const dateDifference = useDateDifference(
+  useEffect(() => {
+    if (loading) {
+      console.log("Loading");
+    }
+
+    if (error) {
+      console.log(error);
+    }
+
+    if (data) {
+      dispatch(setEarliestElement(data[0]));
+      dispatch(setLatestElement(data[1]));
+      //setLatestChapter(data[1].chapterNum);
+      //imagePreviewHandler(nullImage);
+    }
+  }, [data, error, loading, dispatch]);
+  /*const dateDifference = useDateDifference(
     earliestElement.release,
     latestElement.release
-  );
+  );*/
+
+  const { earliestElement, latestElement, hasChapterData } = useMediaElement();
+
+  //todo make a loading element
+  if (!hasChapterData) {
+    return <h1>Loading</h1>;
+  }
 
   return (
     <Card>
       <div className="flex flex-col justify-center sm:flex-col md:flex-row">
         <ChapterDisplay media={earliestElement} />
-        <h1 className="text-center [width:36rem] text-xl my-auto font-bold ">
-          {dateDifference}
-        </h1>
+        <ChapterDateDifference
+          earliestElement={earliestElement}
+          latestElement={latestElement}
+        />
         <ChapterDisplay media={latestElement} />
       </div>
     </Card>

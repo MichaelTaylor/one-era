@@ -21,7 +21,7 @@ const App = () => {
       {isLoading && <LoadingModal />}
       <BirthdayCollection />
       <ChapterComparison />
-      <ChapterGraph />
+      {/*<ChapterGraph />*/}
       <References />
     </React.Fragment>
   );

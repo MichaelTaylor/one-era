@@ -51,12 +51,12 @@ const ChapterGraph = () => {
     }
 
     if (data) {
-      dispatch(setEarliestElement(data[0]));
-      dispatch(setLatestElement(data[1]));
+      //dispatch(setEarliestElement(data[0]));
+      //dispatch(setLatestElement(data[1]));
       setLatestChapter(data[1].chapterNum);
       imagePreviewHandler(nullImage);
     }
-  }, [data, dispatch, nullImage, error, loading, imagePreviewHandler]);
+  }, [data, nullImage, error, loading, imagePreviewHandler]);
 
   return (
     <Card className="flex flex-col items-center">

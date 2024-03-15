@@ -5,10 +5,13 @@ const ChapterImage = (props) => {
   const [volumeImage, setVolumeImage] = useState("");
   const imageRef = useRef(null);
 
-  const volNum = props.media.volume !== null ? props.media.volume : 1;
+  const chapterData = props.media.chapterData;
+  const volumeData = props.media.volumeData;
 
-  const chapterCover = `${process.env.REACT_APP_BACKEND_HOST}${props.media.cover}`;
-  const volumeCover = `${process.env.REACT_APP_BACKEND_HOST}${volumeImage}`;
+  //todo in mongo, if volumeData is empty, then it should be an empty string
+  //todo make a reusable hook to get data
+  const chapterCover = `${process.env.REACT_APP_BACKEND_HOST}${chapterData.cover}`;
+  const volumeCover = `${process.env.REACT_APP_BACKEND_HOST}${volumeData.imageDirectory}`;
 
   const coverImage = !props.volumeVisible ? chapterCover : volumeCover;
   const image = props.authorComments ? odaAvatar : coverImage;

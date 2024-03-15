@@ -48,7 +48,6 @@ const useDateDifference = (startDate, endDate) => {
     dateMessage(-daysPassed, "day");
 
   const dateDifference = message;
-
   return dateDifference;
 };
 
