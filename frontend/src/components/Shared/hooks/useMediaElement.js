@@ -15,7 +15,6 @@ const useMediaElement = () => {
     latestElement &&
     hasAllData(latestElement);
 
-  console.log(latestElement.chapterData);
   return { earliestElement, latestElement, hasChapterData };
 };
 

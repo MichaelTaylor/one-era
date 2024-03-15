@@ -4,17 +4,19 @@ import Card from "../../Shared/UI Elements/Card";
 import ChapterImage from "./ChapterImage";
 import ChapterInfo from "./ChapterInfo";
 
-import testVolume from "../../../images/Volume_1.png";
-
 const ChapterDisplay = (props) => {
-  const GoToWiki = () => {
-    window.open(
-      `https://onepiece.fandom.com/wiki/Chapter_${props.media.chapterNum}`
-    );
-  };
-
   const [authorComments, setAuthorComments] = useState(false);
+
+  //todo instead of state use a reducer (chapters, volumes, anime, etc)
   const [volumeVisible, setVolumeVisible] = useState(false);
+
+  const link = !volumeVisible
+    ? `https://onepiece.fandom.com/wiki/Chapter_${props.media.chapterData.chapterNum}`
+    : `https://onepiece.fandom.com/wiki/Volume_${props.media.volumeData.volumeNum}`;
+
+  const GoToWiki = () => {
+    window.open(link);
+  };
 
   const buttonStyle = `bg-primary text-white transition duration-300 font-bold 
     hover:opacity-60 py-2 px-4 rounded-full mx-12 md:mx-24 lg:mx-100 my-2
@@ -36,7 +38,7 @@ const ChapterDisplay = (props) => {
       disabled={props.media === ""}
       onClick={() => setAuthorComments(!authorComments)}
     >
-      {!authorComments ? "Author Comments" : "Cover"}
+      {!authorComments ? "Comments" : "Cover"}
     </button>
   );
 

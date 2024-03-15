@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import Card from "../../Shared/UI Elements/Card";
 import ChapterDisplay from "./ChapterDisplay";
-import useElement from "../../Shared/hooks/useElement";
-import useDateDifference from "../../Shared/hooks/useDateDifference";
 import useFetch from "../../Shared/hooks/useFetch";
 import {
   setEarliestElement,
@@ -13,7 +11,6 @@ import ChapterDateDifference from "./ChapterDateDifference";
 import useMediaElement from "../../Shared/hooks/useMediaElement";
 
 const ChapterComparison = () => {
-  const reduxElements = useElement();
   const dispatch = useDispatch();
 
   const { data, loading, error } = useFetch(
@@ -32,14 +29,8 @@ const ChapterComparison = () => {
     if (data) {
       dispatch(setEarliestElement(data[0]));
       dispatch(setLatestElement(data[1]));
-      //setLatestChapter(data[1].chapterNum);
-      //imagePreviewHandler(nullImage);
     }
   }, [data, error, loading, dispatch]);
-  /*const dateDifference = useDateDifference(
-    earliestElement.release,
-    latestElement.release
-  );*/
 
   const { earliestElement, latestElement, hasChapterData } = useMediaElement();
 

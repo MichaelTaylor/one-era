@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import odaAvatar from "../../../images/Eiichiro_Oda_Avatar.png";
 
 const ChapterImage = (props) => {
-  const [volumeImage, setVolumeImage] = useState("");
   const imageRef = useRef(null);
 
   const chapterData = props.media.chapterData;
