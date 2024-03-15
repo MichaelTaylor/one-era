@@ -6,7 +6,7 @@ const weekSchema = new mongoose.Schema({
   notes: {
     mangaNotes: String,
   },
-  mangaInfo: Object,
+  chapterID: Object,
 });
 
 module.exports = mongoose.model("Week", weekSchema);

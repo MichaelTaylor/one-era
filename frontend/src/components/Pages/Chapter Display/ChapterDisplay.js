@@ -4,6 +4,8 @@ import Card from "../../Shared/UI Elements/Card";
 import ChapterImage from "./ChapterImage";
 import ChapterInfo from "./ChapterInfo";
 
+import testVolume from "../../../images/Volume_1.png";
+
 const ChapterDisplay = (props) => {
   const GoToWiki = () => {
     window.open(
@@ -46,6 +48,7 @@ const ChapterDisplay = (props) => {
       <div className="mx-5 my-8">
         <ChapterImage
           media={props.media}
+          volumeVisible={volumeVisible}
           authorComments={authorComments}
           GoToWiki={GoToWiki}
         />

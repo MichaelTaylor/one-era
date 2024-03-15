@@ -1,4 +1,5 @@
 const chapter = require("../models/chapterSchema");
+const chapterService = require("../services/chapterService");
 
 const getChapter = async (req, res) => {
   const chapterNumber = req.params.id;
@@ -48,9 +49,23 @@ const getChaptersFirstLast = async (req, res) => {
   res.json(chapters);
 };
 
+const getChapterRelations = async (req, res) => {
+  const chapterNum = req.params.id;
+  const chapterRelations = await chapterService.getChapterRelations(chapterNum);
+
+  res.json(chapterRelations);
+};
+
+const getChapterRelationsFirstLast = async (req, res) => {
+  const chapterRelations = await chapterService.getChapterRelationsFirstLast();
+  res.json(chapterRelations);
+};
+
 module.exports = {
   getChapter,
   getChapters,
   getTwoChapters,
   getChaptersFirstLast,
+  getChapterRelations,
+  getChapterRelationsFirstLast,
 };
