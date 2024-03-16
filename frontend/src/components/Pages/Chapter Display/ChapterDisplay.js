@@ -9,7 +9,7 @@ const ChapterDisplay = (props) => {
 
   //todo instead of state use a reducer (chapters, volumes, anime, etc)
   const [volumeVisible, setVolumeVisible] = useState(false);
-
+  //todo make a reusable hook to get data
   const chapterData = props.media.chapterData;
   const volumeData = props.media.volumeData;
 

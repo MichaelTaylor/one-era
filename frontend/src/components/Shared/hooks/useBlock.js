@@ -18,7 +18,7 @@ const useBlock = (props) => {
     for (let i = 0; i < blocks.length; i++) {
       blocks[i]();
     }
-    dispatch(clearElements());
+    //dispatch(clearElements());
     props.setBlocks([]);
   };
 

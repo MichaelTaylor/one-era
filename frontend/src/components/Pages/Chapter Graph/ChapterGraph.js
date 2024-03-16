@@ -15,52 +15,45 @@ import randomImageData from "../../Shared/Data/RandomImageData";
 
 import useFetch from "../../Shared/hooks/useFetch";
 import useGrid from "../../Shared/hooks/useGrid";
+import useMediaElement from "../../Shared/hooks/useMediaElement";
+import ChapterSelectableElements from "./ChapterSelectableElements";
 
 const ChapterGraph = () => {
-  const [latestChapter, setLatestChapter] = useState(0);
+  /*const [latestChapter, setLatestChapter] = useState(0);
   const nullImage = randomImageData.null;
-  const dispatch = useDispatch();
+  }
 
-  const { data, loading, error } = useFetch(
-    `${process.env.REACT_APP_BACKEND_HOST}/chapters/first/last/`
-  );
+const {
+  firstChapter,
+  lastChapter,
+  chapter,
+  selectedBlocks,
+  isFirst,
+  imagePreview,
+  setFirstChapterHandler,
+  setLastChapterHandler,
+  setTwoChapters,
+  setChapterHandler,
+  selectBlockHandler,
+  fetchChapter,
+  imagePreviewHandler,
+} = useGrid();
 
-  const {
-    firstChapter,
-    lastChapter,
-    chapter,
-    selectedBlocks,
-    isFirst,
-    imagePreview,
-    setFirstChapterHandler,
-    setLastChapterHandler,
-    setTwoChapters,
-    setChapterHandler,
-    selectBlockHandler,
-    fetchChapter,
-    imagePreviewHandler,
-  } = useGrid();
-
+  console.log(earliestElement);
   useEffect(() => {
-    if (loading) {
-      console.log("Loading");
-    }
+    //setLatestChapter(data[1].chapterNum);
+    //imagePreviewHandler(nullImage);
+  }, [imagePreviewHandler, nullImage]);*/
 
-    if (error) {
-      console.log(error);
-    }
+  const { earliestElement, latestElement, hasChapterData } = useMediaElement();
 
-    if (data) {
-      //dispatch(setEarliestElement(data[0]));
-      //dispatch(setLatestElement(data[1]));
-      setLatestChapter(data[1].chapterNum);
-      imagePreviewHandler(nullImage);
-    }
-  }, [data, nullImage, error, loading, imagePreviewHandler]);
+  if (!hasChapterData) {
+    return <h1>Loading</h1>;
+  }
 
   return (
-    <Card className="flex flex-col items-center">
-      <InputPanel
+    <Card>
+      {/*<InputPanel
         setTwoChapters={setTwoChapters}
         firstChapter={firstChapter}
         setFirstChapterHandler={setFirstChapterHandler}
@@ -77,6 +70,10 @@ const ChapterGraph = () => {
         selectedBlocks={selectedBlocks}
         setBlocks={selectBlockHandler}
         setPreviewImage={imagePreviewHandler}
+  />*/}
+      <ChapterSelectableElements
+        earliestElement={earliestElement}
+        latestElement={latestElement}
       />
       <ArcGrid />
     </Card>

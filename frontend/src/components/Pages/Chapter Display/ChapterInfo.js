@@ -33,7 +33,7 @@ const ChapterInfo = (props) => {
         <h1 className="md:font-base lg:font-normal italic">
           Volume {volumeMediaDetails.volumeTitle}
         </h1>
-
+        <h1>Chapter {chapterMediaDetails.chapterNum}</h1>
         <h1>Chapters: {volumeMediaDetails.volumeChapters}</h1>
         <h1>Release: {volumeMediaDetails.volumeRelease}</h1>
       </div>

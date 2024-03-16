@@ -9,6 +9,9 @@ import useElement from "../../Shared/hooks/useElement";
 import useBlock from "../../Shared/hooks/useBlock";
 import useBlockData from "../../Shared/hooks/useBlockData";
 import randomImageData from "../../Shared/Data/RandomImageData";
+
+import axios from "axios";
+
 const ChapterBlock = (props) => {
   const reduxElements = useElement();
 
@@ -42,12 +45,32 @@ const ChapterBlock = (props) => {
 
     if (props.isFirst) {
       block.triggerArrays(props.selectedBlocks);
-
+      //todo: refactor this to a reusable function
       if (before && latestElement === "") return;
-      block.setElement(setEarliestElement(chapterData));
+      axios
+        .get(
+          `${process.env.REACT_APP_BACKEND_HOST}/chapter-relations/singular/${chapterData.chapterNum}`
+        )
+        .then((response) => {
+          if (response.data) {
+            if (response.data.chapterData !== null) {
+              block.setElement(setEarliestElement(response.data));
+            }
+          }
+        });
     } else {
       if (after) return;
-      block.setElement(setLatestElement(chapterData));
+      axios
+        .get(
+          `${process.env.REACT_APP_BACKEND_HOST}/chapter-relations/singular/${chapterData.chapterNum}`
+        )
+        .then((response) => {
+          if (response.data) {
+            if (response.data.chapterData !== null) {
+              block.setElement(setLatestElement(response.data));
+            }
+          }
+        });
     }
   };
   const nullImage = randomImageData.null;

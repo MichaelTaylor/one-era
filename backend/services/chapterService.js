@@ -9,10 +9,10 @@ const getChapterRelations = async (chapterID) => {
     .lean()
     .exec();
 
-  const volumeData = await volume
-    .findOne({ volumeNum: chapterData.volume })
-    .lean()
-    .exec();
+  const volumeData =
+    chapterData !== null && chapterData.volume !== null
+      ? await volume.findOne({ volumeNum: chapterData.volume }).lean().exec()
+      : null;
 
   return { chapterData, volumeData };
 };

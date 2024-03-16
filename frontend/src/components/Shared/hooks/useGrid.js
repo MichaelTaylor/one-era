@@ -35,13 +35,22 @@ const useGrid = () => {
   const fetchImage = (value) => {
     if (value) {
       axios
-        .get(`${process.env.REACT_APP_BACKEND_HOST}/chapters/singular/${value}`)
+        .get(
+          `${process.env.REACT_APP_BACKEND_HOST}/chapter-relations/singular/${value}`
+        )
         .then((response) => {
           if (response.data) {
-            const image = response.data.cover
-              ? `${process.env.REACT_APP_BACKEND_HOST}${response.data.cover}`
-              : nullImage;
-            setImagePreview(image);
+            if (response.data.chapterData !== null) {
+              //todo make a reusable hook to get cover based on media (chapter, volume, etc.)
+              const image = response.data.chapterData.cover
+                ? `${process.env.REACT_APP_BACKEND_HOST}${response.data.chapterData.cover}`
+                : nullImage;
+              setImagePreview(image);
+            } else {
+              setImagePreview(nullImage);
+            }
+          } else {
+            setImagePreview(nullImage);
           }
         });
     } else {
@@ -54,7 +63,7 @@ const useGrid = () => {
     dispatch(clearElements());
     axios
       .get(
-        `${process.env.REACT_APP_BACKEND_HOST}/chapters/multiple/${firstChapter}/${lastChapter}`
+        `${process.env.REACT_APP_BACKEND_HOST}/chapter-relations/multiple/${firstChapter}/${lastChapter}`
       )
       .then((response) => {
         dispatch(setEarliestElement(response.data[0]));
