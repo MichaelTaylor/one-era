@@ -1,21 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Card from "../../Shared/UI Elements/Card";
 import ChapterImage from "./ChapterImage";
 import ChapterInfo from "./ChapterInfo";
 
+import useDataDeconstructor from "../../Shared/hooks/useDataDeconstructor";
+
 const ChapterDisplay = (props) => {
   const [authorComments, setAuthorComments] = useState(false);
 
-  //todo instead of state use a reducer (chapters, volumes, anime, etc)
+  //todo instead of state use a reducer when adding anime (chapters, volumes, anime, etc)
   const [volumeVisible, setVolumeVisible] = useState(false);
-  //todo make a reusable hook to get data
-  const chapterData = props.media.chapterData;
-  const volumeData = props.media.volumeData;
+
+  //to change to chapter if volume is not available
+  useEffect(() => {
+    if (props.media && !props.media.volumeData) {
+      setVolumeVisible(false);
+    }
+  }, [props.media]);
+
+  const mediaData = useDataDeconstructor(props.media);
 
   const link = !volumeVisible
-    ? `https://onepiece.fandom.com/wiki/Chapter_${chapterData.chapterNum}`
-    : `https://onepiece.fandom.com/wiki/Volume_${volumeData.volumeNum}`;
+    ? `https://onepiece.fandom.com/wiki/Chapter_${mediaData.chapterData.chapterNum}`
+    : mediaData.volumeData &&
+      `https://onepiece.fandom.com/wiki/Volume_${mediaData.volumeNum}`;
 
   const GoToWiki = () => {
     window.open(link);
@@ -28,7 +37,7 @@ const ChapterDisplay = (props) => {
   const volumeButton = (
     <button
       className={buttonStyle}
-      disabled={volumeData === null}
+      disabled={mediaData.volumeData === null}
       onClick={() => setVolumeVisible(!volumeVisible)}
     >
       {!volumeVisible ? "Volume" : "Chapter"}
@@ -38,7 +47,7 @@ const ChapterDisplay = (props) => {
   const authorChapterButton = (
     <button
       className={buttonStyle}
-      disabled={chapterData === ""}
+      disabled={mediaData.chapterData === ""}
       onClick={() => setAuthorComments(!authorComments)}
     >
       {!authorComments ? "Comments" : "Cover"}

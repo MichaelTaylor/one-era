@@ -2,8 +2,6 @@ import { useState } from "react";
 
 import { useDispatch } from "react-redux";
 
-import { clearElements } from "../../../app/features/elementsSlice";
-
 const useBlock = (props) => {
   const dispatch = useDispatch();
 
@@ -18,7 +16,7 @@ const useBlock = (props) => {
     for (let i = 0; i < blocks.length; i++) {
       blocks[i]();
     }
-    //dispatch(clearElements());
+
     props.setBlocks([]);
   };
 
