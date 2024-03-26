@@ -7,6 +7,13 @@ const dateMessage = (number, message) => {
   return `${number} ${message}${plural}`;
 };
 
+const isDateNegative = (year, month, day) => {
+  if (year < 0) return true;
+  if (month < 0) return true;
+  if (day < 0) return true;
+  return false;
+};
+
 const useDateDifference = (startDate, endDate) => {
   const earliestDate = new Date(startDate);
   const latestDate = new Date(endDate);
@@ -47,7 +54,9 @@ const useDateDifference = (startDate, endDate) => {
     " " +
     dateMessage(-daysPassed, "day");
 
-  const dateDifference = message;
+  const negativeDate = isDateNegative(yearsPassed, monthsPassed, -daysPassed);
+
+  const dateDifference = negativeDate ? "Time Paradox" : message;
   return dateDifference;
 };
 
