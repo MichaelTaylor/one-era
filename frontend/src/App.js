@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import ChapterGraph from "./components/Pages/Chapter Graph/ChapterGraph";
 import BirthdayCollection from "./components/Pages/Birthdays/BirthdayCollection";
 import ChapterComparison from "./components/Pages/Chapter Display/ChapterComparison";

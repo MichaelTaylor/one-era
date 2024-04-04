@@ -8,6 +8,7 @@ import {
 import useElement from "../../Shared/hooks/useElement";
 import useBlock from "../../Shared/hooks/useBlock";
 import useBlockData from "../../Shared/hooks/useBlockData";
+import useScrollDestination from "../../Shared/hooks/useScrollDestination";
 import randomImageData from "../../Shared/Data/RandomImageData";
 
 import axios from "axios";
@@ -23,6 +24,7 @@ const ChapterBlock = (props) => {
 
   const block = useBlock(props);
   const compiledData = useBlockData(props.data);
+  const goToElement = useScrollDestination("chapter-comparison");
 
   useEffect(() => {
     if (compiledData.published) {
@@ -68,6 +70,7 @@ const ChapterBlock = (props) => {
           if (response.data) {
             if (response.data.chapterData !== null) {
               block.setElement(setLatestElement(response.data));
+              goToElement();
             }
           }
         });

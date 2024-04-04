@@ -6,6 +6,9 @@ import {
   setEarliestElement,
   setLatestElement,
 } from "../../../app/features/elementsSlice";
+
+import useScrollDestination from "./useScrollDestination";
+
 import randomImageData from "../Data/RandomImageData";
 
 const useGrid = () => {
@@ -19,6 +22,8 @@ const useGrid = () => {
 
   const [imagePreview, setImagePreview] = useState(nullImage);
   const dispatch = useDispatch();
+
+  const goToElement = useScrollDestination("chapter-comparison");
 
   const setFirstChapterHandler = (e) => {
     e.preventDefault();
@@ -58,17 +63,19 @@ const useGrid = () => {
     }
   };
 
-  const setTwoChapters = (e) => {
+  const setTwoChapters = async (e) => {
     e.preventDefault();
     dispatch(clearElements());
-    axios
-      .get(
+    try {
+      const response = await axios.get(
         `${process.env.REACT_APP_BACKEND_HOST}/chapter-relations/multiple/${firstChapter}/${lastChapter}`
-      )
-      .then((response) => {
-        dispatch(setEarliestElement(response.data[0]));
-        dispatch(setLatestElement(response.data[1]));
-      });
+      );
+      dispatch(setEarliestElement(response.data[0]));
+      dispatch(setLatestElement(response.data[1]));
+      goToElement();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const setChapterHandler = (message) => {

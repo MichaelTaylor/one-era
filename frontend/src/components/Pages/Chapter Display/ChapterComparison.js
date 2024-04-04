@@ -41,7 +41,10 @@ const ChapterComparison = () => {
 
   return (
     <Card>
-      <div className="flex flex-col justify-center sm:flex-col md:flex-row">
+      <div
+        id="chapter-comparison"
+        className="flex flex-col justify-center sm:flex-col md:flex-row"
+      >
         <ChapterDisplay media={earliestElement} />
         <ChapterDateDifference
           earliestElement={earliestElement}
