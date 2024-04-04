@@ -2,25 +2,20 @@ import React, { useRef } from "react";
 import odaAvatar from "../../../images/Eiichiro_Oda_Avatar.png";
 
 import useDataDeconstructor from "../../Shared/hooks/useDataDeconstructor";
+import useDataLinks from "../../Shared/hooks/useDataLinks";
 
 const ChapterImage = (props) => {
   const imageRef = useRef(null);
 
   const mediaData = useDataDeconstructor(props.media);
+  const links = useDataLinks(mediaData);
 
-  //todo in mongo, if volumeData is empty, then it should be an empty string
-  //todo make a reusable hook to get data
-  const chapterCover = `${process.env.REACT_APP_BACKEND_HOST}${mediaData.chapterData.cover}`;
-  const volumeCover =
-    mediaData.volumeData !== null
-      ? `${process.env.REACT_APP_BACKEND_HOST}${mediaData.volumeData.imageDirectory}`
-      : "";
-  const volumeAuthorCover =
-    mediaData.volumeData !== null
-      ? `${process.env.REACT_APP_BACKEND_HOST}${mediaData.volumeData.authorImage}`
-      : "";
-  const coverImage = !props.volumeVisible ? chapterCover : volumeCover;
-  const authorCover = !props.volumeVisible ? odaAvatar : volumeAuthorCover;
+  const coverImage = !props.volumeVisible
+    ? links.chapterCover
+    : links.volumeCover;
+  const authorCover = !props.volumeVisible
+    ? odaAvatar
+    : links.volumeAuthorCover;
   const image = props.authorComments ? authorCover : coverImage;
 
   const comments = !props.volumeVisible

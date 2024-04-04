@@ -33,25 +33,24 @@ const ChapterComparison = () => {
   }, [data, error, loading, dispatch]);
 
   const { earliestElement, latestElement, hasChapterData } = useMediaElement();
-
-  //todo make a loading element
-  if (!hasChapterData) {
-    return <h1>Loading</h1>;
-  }
+  const loadingPage = <h1>Loading</h1>;
+  const loadedPage = (
+    <div
+      id="chapter-comparison"
+      className="flex flex-col justify-center sm:flex-col md:flex-row"
+    >
+      <ChapterDisplay media={earliestElement} />
+      <ChapterDateDifference
+        earliestElement={earliestElement}
+        latestElement={latestElement}
+      />
+      <ChapterDisplay media={latestElement} />
+    </div>
+  );
 
   return (
-    <Card>
-      <div
-        id="chapter-comparison"
-        className="flex flex-col justify-center sm:flex-col md:flex-row"
-      >
-        <ChapterDisplay media={earliestElement} />
-        <ChapterDateDifference
-          earliestElement={earliestElement}
-          latestElement={latestElement}
-        />
-        <ChapterDisplay media={latestElement} />
-      </div>
+    <Card className="[min-height:48rem]">
+      {hasChapterData ? loadedPage : loadingPage}
     </Card>
   );
 };
