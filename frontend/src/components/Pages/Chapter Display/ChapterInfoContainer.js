@@ -23,17 +23,20 @@ const ChapterInfoContainer = (props) => {
     mediaRelease: chapterMediaDetails.release,
   };
 
-  const vol = {
-    mediaText: "Volume",
-    mediaNum: volumeMediaDetails.volumeNum,
-    mediaTitle: volumeMediaDetails.volumeTitle,
-    mediaArcText: "Chapter:",
-    mediaArc: chapterMediaDetails.chapterNum,
-    mediaSagaText: "Chapters:",
-    mediaSaga: volumeMediaDetails.volumeChapters,
-    mediaReleaseText: "Release: ",
-    mediaRelease: volumeMediaDetails.volumeRelease,
-  };
+  const vol =
+    volumeMediaDetails === null
+      ? emptyMediaMessage
+      : {
+          mediaText: "Volume",
+          mediaNum: volumeMediaDetails.volumeNum,
+          mediaTitle: volumeMediaDetails.volumeTitle,
+          mediaArcText: "Chapter:",
+          mediaArc: chapterMediaDetails.chapterNum,
+          mediaSagaText: "Chapters:",
+          mediaSaga: volumeMediaDetails.volumeChapters,
+          mediaReleaseText: "Release: ",
+          mediaRelease: volumeMediaDetails.volumeRelease,
+        };
 
   const fullMediaMessage = !props.volumeVisible ? chap : vol;
   const message = props.media === "" ? emptyMediaMessage : fullMediaMessage;
