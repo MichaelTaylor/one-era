@@ -18,7 +18,11 @@ app.use(helmet());
 
 connectDB();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: `${process.env.ORIGIN}`,
+  })
+);
 app.use("/static", express.static(__dirname + "/images"));
 
 app.use(chapterRoutes);
