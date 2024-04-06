@@ -21,7 +21,6 @@ const getTwoChapters = async (req, res) => {
   const earlyChapterID = req.params.earlyChapter;
   const lateChapterID = req.params.lateChapter;
 
-  // Start both queries in parallel
   const earlyChapterPromise = chapter
     .findOne({ chapterNum: earlyChapterID }, { _id: 0 })
     .exec();
@@ -30,7 +29,6 @@ const getTwoChapters = async (req, res) => {
     .findOne({ chapterNum: lateChapterID }, { _id: 0 })
     .exec();
 
-  // Wait for both queries to finish
   const [earlyChapter, lateChapter] = await Promise.all([
     earlyChapterPromise,
     lateChapterPromise,

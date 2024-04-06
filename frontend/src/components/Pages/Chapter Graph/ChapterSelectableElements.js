@@ -22,7 +22,11 @@ const ChapterSelectableElements = (props) => {
 
   return (
     <div className="flex flex-col items-center">
-      <InputPanel gridTools={gridTools} latestChapter={latestChapter} />
+      <InputPanel
+        gridTools={gridTools}
+        latestChapter={latestChapter}
+        latestDateChapter={props.latestDateElement}
+      />
       <ChapterMessage chapter={gridTools.chapter} />
       <ChapterRows gridTools={gridTools} />
     </div>

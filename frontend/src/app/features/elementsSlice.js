@@ -19,7 +19,10 @@ export const elementsSlice = createSlice({
     setLatestDateElement: (state, action) => {
       state.latestDateElement = action.payload;
     },
-    clearElements: () => initialState,
+    clearElements: (state) => {
+      state.earliestElement = "";
+      state.latestElement = "";
+    },
   },
 });
 

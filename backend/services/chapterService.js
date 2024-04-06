@@ -4,16 +4,13 @@ const volume = require("../models/volumeSchema");
 const getChapterRelations = async (chapterID) => {
   const chapterNum = chapterID;
 
-  // Start the chapter query
   const chapterPromise = chapter
     .findOne({ chapterNum: chapterNum })
     .lean()
     .exec();
 
-  // Wait for the chapter query to finish
   const chapterData = await chapterPromise;
 
-  // Start the volume query only if necessary
   let volumePromise;
   if (chapterData !== null && chapterData.volume !== null) {
     volumePromise = volume
@@ -22,48 +19,42 @@ const getChapterRelations = async (chapterID) => {
       .exec();
   }
 
-  // Wait for the volume query to finish
   const volumeData = volumePromise ? await volumePromise : null;
 
   return { chapterData, volumeData };
 };
 
 const getTwoChapterRelations = async (earlyChapterID, lateChapterID) => {
-  // Start both chapter queries in parallel
   const earlyChapterPromise = chapter
-    .findOne({ chapterNum: earlyChapterID }, { _id: 0 }) // Projection
-    .lean() // Lean query
+    .findOne({ chapterNum: earlyChapterID }, { _id: 0 })
+    .lean()
     .exec();
 
   const lateChapterPromise = chapter
-    .findOne({ chapterNum: lateChapterID }, { _id: 0 }) // Projection
-    .lean() // Lean query
+    .findOne({ chapterNum: lateChapterID }, { _id: 0 })
+    .lean()
     .exec();
 
-  // Wait for both chapter queries to finish
   const [earlyChapterData, lateChapterData] = await Promise.all([
     earlyChapterPromise,
     lateChapterPromise,
   ]);
 
-  // Start both volume queries in parallel
   const earlyVolumePromise = volume
-    .findOne({ volumeNum: earlyChapterData.volume }, { _id: 0 }) // Projection
-    .lean() // Lean query
+    .findOne({ volumeNum: earlyChapterData.volume }, { _id: 0 })
+    .lean()
     .exec();
 
   const lateVolumePromise = volume
-    .findOne({ volumeNum: lateChapterData.volume }, { _id: 0 }) // Projection
-    .lean() // Lean query
+    .findOne({ volumeNum: lateChapterData.volume }, { _id: 0 })
+    .lean()
     .exec();
 
-  // Wait for both volume queries to finish
   const [earlyVolumeData, lateVolumeData] = await Promise.all([
     earlyVolumePromise,
     lateVolumePromise,
   ]);
 
-  // Return the results
   return [
     {
       chapterData: earlyChapterData,
@@ -77,7 +68,6 @@ const getTwoChapterRelations = async (earlyChapterID, lateChapterID) => {
 };
 
 const getChapterRelationsFirstLast = async () => {
-  // Start both queries in parallel
   const firstChapterPromise = chapter
     .findOne({ chapterNum: 1 }, { _id: 0 })
     .lean()
@@ -90,13 +80,11 @@ const getChapterRelationsFirstLast = async () => {
     .lean()
     .exec();
 
-  // Wait for both queries to finish
   const [firstChapterData, lastChapterData] = await Promise.all([
     firstChapterPromise,
     lastChapterPromise,
   ]);
 
-  // Start both volume queries in parallel
   const firstVolumePromise = volume
     .findOne({ volumeNum: firstChapterData.volume })
     .lean()
@@ -107,7 +95,6 @@ const getChapterRelationsFirstLast = async () => {
     .lean()
     .exec();
 
-  // Wait for both volume queries to finish
   const [firstVolumeData, lastVolumeData] = await Promise.all([
     firstVolumePromise,
     lastVolumePromise,

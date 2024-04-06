@@ -20,11 +20,11 @@ const ChapterInputs = (props) => {
       />
       <input
         type="number"
-        placeholder={`Chapter ${props.latestChapter}`}
+        placeholder={`Chapter ${props.latestDateChapter.chapterData.chapterNum}`}
         value={props.lastChapter}
         onChange={props.setLastChapterHandler}
         min={props.firstChapter}
-        max={props.latestChapter}
+        max={props.latestDateChapter.chapterData.chapterNum}
         className={inputStyle}
       />
       <button

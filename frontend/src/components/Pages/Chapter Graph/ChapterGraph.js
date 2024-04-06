@@ -5,7 +5,7 @@ import useMediaElement from "../../Shared/hooks/useMediaElement";
 import ChapterSelectableElements from "./ChapterSelectableElements";
 
 const ChapterGraph = () => {
-  const { earliestElement, hasChapterData, latestDateElement } =
+  const { latestElement, hasChapterData, latestDateElement } =
     useMediaElement();
 
   if (!hasChapterData) {
@@ -15,8 +15,8 @@ const ChapterGraph = () => {
   return (
     <Card>
       <ChapterSelectableElements
-        earliestElement={earliestElement}
-        latestElement={latestDateElement}
+        latestElement={latestElement}
+        latestDateElement={latestDateElement}
       />
       <ArcGrid />
     </Card>

@@ -13,6 +13,7 @@ const InputPanel = (props) => {
         lastChapter={gridTools.lastChapter}
         setLastChapterHandler={gridTools.setLastChapterHandler}
         latestChapter={props.latestChapter}
+        latestDateChapter={props.latestDateChapter}
       />
       <div className="w-64 h-64 flex justify-center items-center">
         <img
