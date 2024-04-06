@@ -13,4 +13,6 @@ const chapterSchema = new mongoose.Schema({
   authorComments: String,
 });
 
+chapterSchema.index({ chapterNum: 1 });
+
 module.exports = mongoose.model("Chapter", chapterSchema);

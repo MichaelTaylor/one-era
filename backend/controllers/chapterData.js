@@ -21,37 +21,37 @@ const getTwoChapters = async (req, res) => {
   const earlyChapterID = req.params.earlyChapter;
   const lateChapterID = req.params.lateChapter;
 
-  const chapters = [];
+  // Start both queries in parallel
+  const earlyChapterPromise = chapter
+    .findOne({ chapterNum: earlyChapterID }, { _id: 0 })
+    .exec();
 
-  const earlyChapter = await chapter.findOne(
-    { chapterNum: earlyChapterID },
-    { _id: 0 }
-  );
+  const lateChapterPromise = chapter
+    .findOne({ chapterNum: lateChapterID }, { _id: 0 })
+    .exec();
 
-  const lateChapter = await chapter.findOne(
-    { chapterNum: lateChapterID },
-    { _id: 0 }
-  );
+  // Wait for both queries to finish
+  const [earlyChapter, lateChapter] = await Promise.all([
+    earlyChapterPromise,
+    lateChapterPromise,
+  ]);
 
-  chapters.push(earlyChapter);
-  chapters.push(lateChapter);
-
-  res.json(chapters);
+  res.json([earlyChapter, lateChapter]);
 };
 
 const getChaptersFirstLast = async (req, res) => {
-  const firstChapter = await chapter.findOne({ chapterNum: 1 }, { _id: 0 });
-  const lastChapter = await chapter
+  const firstChapterPromise = chapter.findOne({ chapterNum: 1 }, { _id: 0 });
+  const lastChapterPromise = chapter
     .findOne({}, { _id: 0 })
     .sort({ _id: -1 })
     .limit(1);
 
-  const chapters = [];
+  const [firstChapter, lastChapter] = await Promise.all([
+    firstChapterPromise,
+    lastChapterPromise,
+  ]);
 
-  chapters.push(firstChapter);
-  chapters.push(lastChapter);
-
-  res.json(chapters);
+  res.json([firstChapter, lastChapter]);
 };
 
 const getChapterRelations = async (req, res) => {
