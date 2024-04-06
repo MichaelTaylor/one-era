@@ -19,7 +19,7 @@ const ChapterDateDifference = (props) => {
       </div>
     );
 
-  return <div className={fontStyle}>{finalMessage}</div>;
+  return <div className={`${fontStyle} mx-auto`}>{finalMessage}</div>;
 };
 
 export default ChapterDateDifference;
