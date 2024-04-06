@@ -94,7 +94,7 @@ const useGrid = () => {
     setImagePreview(image);
   }, []);
 
-  return {
+  const gridTools = {
     firstChapter,
     lastChapter,
     chapter,
@@ -109,6 +109,8 @@ const useGrid = () => {
     fetchChapter,
     imagePreviewHandler,
   };
+
+  return gridTools;
 };
 
 export default useGrid;

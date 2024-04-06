@@ -4,6 +4,7 @@ const useMediaElement = () => {
   const reduxElements = useElement();
   const earliestElement = reduxElements.earliestElement;
   const latestElement = reduxElements.latestElement;
+  const latestDateElement = reduxElements.latestDateElement;
 
   const hasAllData = (element) => {
     return !!element && !!element.chapterData;
@@ -15,7 +16,7 @@ const useMediaElement = () => {
     latestElement &&
     hasAllData(latestElement);
 
-  return { earliestElement, latestElement, hasChapterData };
+  return { earliestElement, latestElement, hasChapterData, latestDateElement };
 };
 
 export default useMediaElement;

@@ -3,8 +3,9 @@ const chapterData = require("../controllers/chapterData");
 
 const router = express.Router();
 
-router.get("/chapters", chapterData.getChapters);
 router.get("/chapters/singular/:id", chapterData.getChapter);
+router.get("/chapters", chapterData.getChapters);
+router.get("/chapters/latest", chapterData.getLatestChapter);
 
 router.get(
   "/chapters/multiple/:earlyChapter/:lateChapter",

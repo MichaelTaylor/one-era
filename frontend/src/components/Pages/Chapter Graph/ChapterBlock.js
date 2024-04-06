@@ -38,7 +38,6 @@ const ChapterBlock = (props) => {
   const latestRelease = new Date(latestElement.release);
 
   const before = compiledRelease > latestRelease;
-
   const after = compiledRelease < earliestRelease;
 
   const selectionHandler = () => {

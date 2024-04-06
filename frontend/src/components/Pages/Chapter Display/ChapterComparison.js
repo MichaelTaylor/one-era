@@ -5,6 +5,7 @@ import useFetch from "../../Shared/hooks/useFetch";
 import {
   setEarliestElement,
   setLatestElement,
+  setLatestDateElement,
 } from "../../../app/features/elementsSlice";
 import { useDispatch } from "react-redux";
 import ChapterDateDifference from "./ChapterDateDifference";
@@ -29,6 +30,7 @@ const ChapterComparison = () => {
     if (data) {
       dispatch(setEarliestElement(data[0]));
       dispatch(setLatestElement(data[1]));
+      dispatch(setLatestDateElement(data[1]));
     }
   }, [data, error, loading, dispatch]);
 

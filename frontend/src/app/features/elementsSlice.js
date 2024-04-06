@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   earliestElement: "",
   latestElement: "",
+  latestDateElement: "",
 };
 
 export const elementsSlice = createSlice({
@@ -15,10 +16,17 @@ export const elementsSlice = createSlice({
     setLatestElement: (state, action) => {
       state.latestElement = action.payload;
     },
+    setLatestDateElement: (state, action) => {
+      state.latestDateElement = action.payload;
+    },
     clearElements: () => initialState,
   },
 });
 
-export const { setEarliestElement, setLatestElement, clearElements } =
-  elementsSlice.actions;
+export const {
+  setEarliestElement,
+  setLatestElement,
+  clearElements,
+  setLatestDateElement,
+} = elementsSlice.actions;
 export default elementsSlice.reducer;

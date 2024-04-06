@@ -4,6 +4,7 @@ import ChapterRow from "./ChapterRow";
 import yearsData from "../../Shared/Data/YearsData";
 
 const ChapterRows = (props) => {
+  const gridTools = props.gridTools;
   const rows = useMemo(() => {
     return yearsData
       ?.toReversed()
@@ -11,23 +12,16 @@ const ChapterRows = (props) => {
         <ChapterRow
           key={item}
           year={item}
-          visibleState={props.visibleState}
-          isFirst={props.isFirst}
-          fetchChapter={props.fetchChapter}
-          selectedBlocks={props.selectedBlocks}
-          setBlocks={props.setBlocks}
-          setPreviewImage={props.setPreviewImage}
+          visibleState={gridTools.setChapterHandler}
+          isFirst={gridTools.isFirst}
+          fetchChapter={gridTools.fetchChapter}
+          selectedBlocks={gridTools.selectedBlocks}
+          setBlocks={gridTools.selectBlockHandler}
+          setPreviewImage={gridTools.imagePreviewHandler}
           flexStyle={index === yearsData.length - 1 ? "[flex:1]" : ""}
         />
       ));
-  }, [
-    props.visibleState,
-    props.isFirst,
-    props.fetchChapter,
-    props.selectedBlocks,
-    props.setBlocks,
-    props.setPreviewImage,
-  ]);
+  }, [gridTools]);
   return <div className="flex flex-col my-2">{rows}</div>;
 };
 
