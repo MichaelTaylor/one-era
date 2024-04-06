@@ -47,12 +47,11 @@ const useDateDifference = (startDate, endDate) => {
   const monthsPassed = start.diff(end, "months") % 12;
   const daysPassed = month.diff(day, "days");
 
-  const message =
-    dateMessage(yearsPassed, "year") +
-    " " +
-    dateMessage(monthsPassed, "month") +
-    " " +
-    dateMessage(-daysPassed, "day");
+  const message = {
+    year: dateMessage(yearsPassed, "year"),
+    month: dateMessage(monthsPassed, "month"),
+    day: dateMessage(-daysPassed, "day"),
+  };
 
   const negativeDate = isDateNegative(yearsPassed, monthsPassed, -daysPassed);
 

@@ -1,11 +1,13 @@
 import React, { useRef } from "react";
-import odaAvatar from "../../../images/Eiichiro_Oda_Avatar.png";
+import randomImageData from "../../Shared/Data/RandomImageData";
 
 import useDataDeconstructor from "../../Shared/hooks/useDataDeconstructor";
 import useDataLinks from "../../Shared/hooks/useDataLinks";
 
 const ChapterImage = (props) => {
   const imageRef = useRef(null);
+
+  const { odaAvatar } = randomImageData;
 
   const mediaData = useDataDeconstructor(props.media);
   const links = useDataLinks(mediaData);

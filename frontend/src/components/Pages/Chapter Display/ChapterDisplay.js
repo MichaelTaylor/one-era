@@ -24,7 +24,7 @@ const ChapterDisplay = (props) => {
   const link = !volumeVisible
     ? `https://onepiece.fandom.com/wiki/Chapter_${mediaData.chapterData.chapterNum}`
     : mediaData.volumeData &&
-      `https://onepiece.fandom.com/wiki/Volume_${mediaData.volumeNum}`;
+      `https://onepiece.fandom.com/wiki/Volume_${mediaData.volumeData.volumeNum}`;
 
   const GoToWiki = () => {
     window.open(link);
