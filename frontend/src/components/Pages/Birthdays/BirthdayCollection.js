@@ -20,7 +20,7 @@ const BirthdayCollection = () => {
   };
 
   useEffect(() => {
-    const date = new Date();
+    const date = new Date(1993, 11, 10);
     const monthString = date.toLocaleString("default", { month: "long" });
     const month = date.getMonth() + 1;
     const day = date.getDate();
@@ -30,7 +30,7 @@ const BirthdayCollection = () => {
   }, []);
 
   return (
-    <Card className="flex flex-col min-h-72">
+    <Card className="flex flex-col pb-10 min-h-72">
       <h1 className={boldStyle}>Birthdays Today</h1>
       <h1 className={boldStyle}>{date}</h1>
       <BirthdayRow birthdays={birthdays} />

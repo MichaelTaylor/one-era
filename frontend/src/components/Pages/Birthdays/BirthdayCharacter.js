@@ -13,7 +13,7 @@ const BirthdayCharacter = (props) => {
   if (props.image.includes("undefined")) return;
 
   return (
-    <div className="mx-1 my-10 [max-width:127px] [max-height:127px] sm:mx-4 transition hover:cursor-pointer hover:scale-105">
+    <div className="my-10 [max-width:127px] [max-height:127px] sm:mx-4 transition hover:cursor-pointer hover:scale-105">
       <img
         className="w-auto h-auto border-black border-4"
         crossOrigin="anonymous"
@@ -23,7 +23,7 @@ const BirthdayCharacter = (props) => {
         onLoad={handleImageLoad}
       />
       <h1
-        className="font-bold text-xs sm:text-sm 
+        className="font-bold text-sm sm:text-sm 
       hover:underline decoration-solid"
         onClick={windowOpen}
       >
