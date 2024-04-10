@@ -9,7 +9,7 @@ const BirthdayCollection = () => {
   const [date, setDate] = useState("");
   const [birthdays, setBirthdays] = useState([]);
 
-  const boldStyle = "font-bold text-center";
+  const boldStyle = "text-xl font-bold text-center";
 
   const getBirthdays = async (month, day) => {
     await axios
