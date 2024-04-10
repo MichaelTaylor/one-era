@@ -20,7 +20,7 @@ const BirthdayCollection = () => {
   };
 
   useEffect(() => {
-    const date = new Date(1993, 11, 10);
+    const date = new Date();
     const monthString = date.toLocaleString("default", { month: "long" });
     const month = date.getMonth() + 1;
     const day = date.getDate();
