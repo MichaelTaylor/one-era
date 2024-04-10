@@ -11,6 +11,7 @@
 <h2>Made With</h2>
 <ul>
   <li>React</li>
+  <li>Redux</li>
   <li>NodeJS</li>
   <li>Express</li>
   <li>MongoDB</li>
