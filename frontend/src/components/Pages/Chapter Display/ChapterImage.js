@@ -28,7 +28,7 @@ const ChapterImage = (props) => {
   const [loadingImage, isLoading, handleImageLoad] = useImageLoading(image);
 
   return (
-    <div className="flex flex-col items-center h-80">
+    <div className="flex flex-col items-center h-auto">
       <img
         crossOrigin="anonymous"
         className={`transition hover:scale-105 cursor-pointer mx-auto 

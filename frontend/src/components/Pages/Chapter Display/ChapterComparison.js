@@ -39,7 +39,7 @@ const ChapterComparison = () => {
   const loadedPage = (
     <div
       id="chapter-comparison"
-      className="flex flex-col justify-center sm:flex-col md:flex-row"
+      className="flex flex-col justify-center px-5 lg:px-0 sm:flex-row md:flex-row"
     >
       <ChapterDisplay media={earliestElement} />
       <ChapterDateDifference
@@ -51,7 +51,7 @@ const ChapterComparison = () => {
   );
 
   return (
-    <Card className="[min-height:48rem]">
+    <Card className="min-h-max">
       {hasChapterData ? loadedPage : loadingPage}
     </Card>
   );

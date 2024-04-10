@@ -2,7 +2,7 @@ import React from "react";
 import useDateDifference from "../../Shared/hooks/useDateDifference";
 
 const ChapterDateDifference = (props) => {
-  const fontStyle = `text-center w-1/2 text-3xl my-auto font-bold`;
+  const fontStyle = `text-center w-1/2 text-xl sm:text-2xl md:text-3xl my-auto font-bold`;
 
   const dateDifference = useDateDifference(
     props.earliestElement.chapterData.release,
