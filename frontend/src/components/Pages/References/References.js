@@ -9,10 +9,11 @@ const References = () => {
     window.open(link, "_blank");
   };
 
-  const listStyle = "hover:cursor-pointer hover:opacity-70";
+  const listStyle =
+    "text-xl md:text-lg my-5 hover:cursor-pointer hover:opacity-70";
   return (
     <Card>
-      <h1 className="text-center">References</h1>
+      <h1 className="text-2xl font-bold text-center">References</h1>
       <UnOrderedList
         unOrderedStyle="m-4"
         listItems={referencesData}
