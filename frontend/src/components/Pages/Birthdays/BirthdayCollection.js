@@ -30,7 +30,7 @@ const BirthdayCollection = () => {
   }, []);
 
   return (
-    <Card className="flex flex-col">
+    <Card className="flex flex-col min-h-72">
       <h1 className={boldStyle}>Birthdays Today</h1>
       <h1 className={boldStyle}>{date}</h1>
       <BirthdayRow birthdays={birthdays} />

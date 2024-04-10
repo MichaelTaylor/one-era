@@ -13,7 +13,7 @@ const BirthdayCharacter = (props) => {
   if (props.image.includes("undefined")) return;
 
   return (
-    <div className="m-1 [max-width:127px] [max-height:127px] sm:m-4 transition hover:cursor-pointer hover:scale-105">
+    <div className="mx-1 my-10 [max-width:127px] [max-height:127px] sm:mx-4 transition hover:cursor-pointer hover:scale-105">
       <img
         className="w-auto h-auto border-black border-4"
         crossOrigin="anonymous"
