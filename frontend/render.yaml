@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: one-era
+    env: static
+    buildCommand: npm run build
+    staticPublishPath: ./build
+    routes:
+      - src: /favicon.ico
+        dest: /favicon.ico
+    envVars:
+      - key: NODE_ENV
+        value: production
