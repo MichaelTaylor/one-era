@@ -10,7 +10,7 @@ const References = () => {
   };
 
   const listStyle =
-    "text-xl md:text-lg my-5 hover:cursor-pointer hover:opacity-70";
+    "text-xl py-1 w-max md:text-lg my-5 hover:underline hover:cursor-pointer hover:font-bold";
   return (
     <Card>
       <h1 className="text-2xl font-bold text-center">References</h1>
