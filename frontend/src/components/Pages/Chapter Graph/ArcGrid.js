@@ -9,7 +9,7 @@ const ArcGrid = () => {
 
   return (
     <div
-      className={`grid ${smallGrid} ${bigGrid} mx-auto justify-center gap-1 m-4 xl:m-10`}
+      className={`grid ${smallGrid} ${bigGrid} justify-center gap-1 m-4 xl:m-10`}
     >
       {arcData.map((arc) => (
         <ArcElement

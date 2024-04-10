@@ -11,7 +11,6 @@ const useImageLoading = (image) => {
   }, [image]);
 
   const handleImageLoad = () => {
-    console.log("Image Loaded");
     setIsLoading(false);
   };
 
