@@ -2,7 +2,7 @@ import React from "react";
 
 const ChapterInputs = (props) => {
   const inputStyle =
-    "text-center w-64 sm:w-96 mt-6 mx-5 border-2 border-black rounded";
+    "text-center w-64 w-36 sm:w-96 mt-6 mx-5 border-2 border-black rounded";
 
   return (
     <form

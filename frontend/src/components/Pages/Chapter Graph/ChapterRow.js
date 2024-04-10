@@ -16,8 +16,8 @@ const ChapterRow = (props) => {
   }, [props.year]);
 
   return (
-    <div className="flex flex-row flex-nowrap ml-1 sm:ml-5">
-      <p className={`mr-3 ${props.flexStyle}`}>{props.year}</p>
+    <div className="flex flex-col text-center sm:text-left sm:flex-row flex-nowrap ml-1 sm:ml-5">
+      <p className={`sm:text-xl mr-3 ${props.flexStyle}`}>{props.year}</p>
       <div className="flex flex-nowrap">
         {row.map((item) => (
           <ChapterBlock

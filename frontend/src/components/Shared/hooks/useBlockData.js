@@ -2,8 +2,8 @@ import useArcColor from "./useArcColor";
 import useUnpublishedColor from "./useUnpublishedColor";
 
 const useBlockData = (data) => {
-  const sizes = `[width:3px]
-    [height:3px]
+  const sizes = `[width:2px]
+    [height:2px]
     sm:w-1
     sm:h-1 
     md:w-2

@@ -12,13 +12,13 @@ const ArcElement = (props) => {
   const { windowOpen } = useOpenLink(`${props.wikiLink}`);
 
   return (
-    <div className={`flex flex-row`}>
+    <div className={`flex flex-row max-w-max`}>
       <div
-        className={`${color} ${hasWiki}  rounded-md border-2 mt-0.5 w-5 h-5`}
+        className={`${color} ${hasWiki}  rounded-md border-2 mt-0.5 w-3 h-3 xl:w-5 xl:h-5`}
         onClick={props.wikiLink ? windowOpen : undefined}
       />
       <p
-        className={`${hasWiki} text-xs lg:text-sm ml-2 text-center`}
+        className={`${hasWiki} text-xs lg:text-sm ml-2 w-auto text-center`}
         onClick={props.wikiLink ? windowOpen : undefined}
       >
         {props.arc}
