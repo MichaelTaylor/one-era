@@ -1,25 +1,31 @@
 import React from "react";
 
-const BirthdayCharacter = (props) => {
-  if (props.image.includes("undefined")) return;
+import useImageLoading from "../../Shared/hooks/useImageLoading";
+import useOpenLink from "../../Shared/hooks/useOpenLink";
 
-  const wikiRedirect = () => {
-    window.open(`${props.wikiLink}`, "_blank");
-  };
+const BirthdayCharacter = (props) => {
+  const [loadingImage, isLoading, handleImageLoad] = useImageLoading(
+    props.image
+  );
+
+  const { windowOpen } = useOpenLink(`${props.wikiLink}`);
+
+  if (props.image.includes("undefined")) return;
 
   return (
     <div className="m-1 sm:m-4 transition hover:cursor-pointer hover:scale-105">
       <img
         className="w-auto h-auto border-black border-4"
         crossOrigin="anonymous"
-        src={props.image}
+        src={isLoading ? loadingImage : props.image}
         alt={`${props.characterName} birthday`}
-        onClick={wikiRedirect}
+        onClick={windowOpen}
+        onLoad={handleImageLoad}
       />
       <h1
         className="font-bold text-xs sm:text-sm 
       hover:underline decoration-solid"
-        onClick={wikiRedirect}
+        onClick={windowOpen}
       >
         {props.characterName}
       </h1>

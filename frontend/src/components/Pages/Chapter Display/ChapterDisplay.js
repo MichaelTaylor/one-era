@@ -5,6 +5,7 @@ import ChapterImage from "./ChapterImage";
 import ChapterContainer from "./ChapterInfoContainer";
 
 import useDataDeconstructor from "../../Shared/hooks/useDataDeconstructor";
+import useOpenLink from "../../Shared/hooks/useOpenLink";
 
 const ChapterDisplay = (props) => {
   const [authorComments, setAuthorComments] = useState(false);
@@ -26,9 +27,7 @@ const ChapterDisplay = (props) => {
     : mediaData.volumeData &&
       `https://onepiece.fandom.com/wiki/Volume_${mediaData.volumeData.volumeNum}`;
 
-  const GoToWiki = () => {
-    window.open(link);
-  };
+  const { windowOpen } = useOpenLink(link);
 
   const buttonStyle = `bg-primary text-white transition duration-300 font-bold 
     hover:opacity-60 py-2 px-4 rounded-full mx-12 md:mx-24 lg:mx-100 my-2
@@ -64,7 +63,7 @@ const ChapterDisplay = (props) => {
           media={props.media}
           volumeVisible={volumeVisible}
           authorComments={authorComments}
-          GoToWiki={GoToWiki}
+          GoToWiki={windowOpen}
         />
       </div>
     </Card>

@@ -1,5 +1,6 @@
 import React from "react";
 import useArcColor from "../../Shared/hooks/useArcColor";
+import useOpenLink from "../../Shared/hooks/useOpenLink";
 
 const ArcElement = (props) => {
   const color = useArcColor(props.arc);
@@ -8,20 +9,17 @@ const ArcElement = (props) => {
 
   const hasWiki = props.wikiLink ? wikiStyle : "";
 
-  const GoToWiki = () => {
-    if (!props.wikiLink) return;
-    window.open(props.wikiLink, "_blank");
-  };
+  const { windowOpen } = useOpenLink(`${props.wikiLink}`);
 
   return (
     <div className={`flex flex-row`}>
       <div
         className={`${color} ${hasWiki}  rounded-md border-2 mt-0.5 w-5 h-5`}
-        onClick={GoToWiki}
+        onClick={props.wikiLink ? windowOpen : undefined}
       />
       <p
         className={`${hasWiki} text-xs lg:text-sm ml-2 text-center`}
-        onClick={GoToWiki}
+        onClick={props.wikiLink ? windowOpen : undefined}
       >
         {props.arc}
       </p>
