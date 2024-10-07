@@ -160,6 +160,11 @@ export const arcData = [
     link: "https://onepiece.fandom.com/wiki/Egghead_Arc",
   },
   {
+    arc: "Land of Gods",
+    color: "bg-arcColors-landOfGods",
+    link: "https://onepiece.fandom.com/wiki/Land_of_Gods_Arc",
+  },
+  {
     arc: "Break",
     color: "bg-break",
   },

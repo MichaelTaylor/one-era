@@ -50,6 +50,7 @@ module.exports = {
         levely: "#ff6666",
         wanoCountry: "#ffff66",
         eggheadIsland: "#2eb5f3",
+        landOfGods: "#B39352",
       },
     },
   },
